@@ -11,13 +11,16 @@ data class FileItem(
     val sizeBytes: Long,
     val lastModified: Long,
     val isDirectory: Boolean = false,
+    val itemCount: Int? = null,
     val mimeType: String? = null
 ) {
     val file: File get() = File(path)
 
     val formattedSize: String
         get() {
-            if (isDirectory) return "Folder"
+            if (isDirectory) {
+                return if (itemCount != null) "$itemCount items" else "Folder"
+            }
             val kb = sizeBytes / 1024.0
             val mb = kb / 1024.0
             val gb = mb / 1024.0
@@ -35,18 +38,38 @@ data class FileItem(
             return sdf.format(Date(lastModified))
         }
 
+    val extension: String
+        get() = name.substringAfterLast('.', "").lowercase()
+
     val isImage: Boolean
         get() = mimeType?.startsWith("image/") == true ||
-                listOf("jpg", "jpeg", "png", "webp", "gif", "bmp").any { name.lowercase().endsWith(".$it") }
+                extension in listOf("jpg", "jpeg", "png", "webp", "gif", "bmp", "heic", "svg")
 
     val isAudio: Boolean
         get() = mimeType?.startsWith("audio/") == true ||
-                listOf("mp3", "m4a", "wav", "aac", "ogg", "opus").any { name.lowercase().endsWith(".$it") }
+                extension in listOf("mp3", "m4a", "wav", "aac", "ogg", "opus", "amr", "flac")
 
     val isVideo: Boolean
         get() = mimeType?.startsWith("video/") == true ||
-                listOf("mp4", "mkv", "avi", "mov", "3gp").any { name.lowercase().endsWith(".$it") }
+                extension in listOf("mp4", "mkv", "avi", "mov", "3gp", "webm", "ts")
 
     val isPdf: Boolean
-        get() = name.lowercase().endsWith(".pdf") || mimeType == "application/pdf"
+        get() = extension == "pdf" || mimeType == "application/pdf"
+
+    val isExcel: Boolean
+        get() = extension in listOf("xls", "xlsx", "csv") ||
+                mimeType in listOf("application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
+    val isWord: Boolean
+        get() = extension in listOf("doc", "docx") ||
+                mimeType in listOf("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+
+    val isPowerPoint: Boolean
+        get() = extension in listOf("ppt", "pptx")
+
+    val isZip: Boolean
+        get() = extension in listOf("zip", "rar", "7z", "tar", "gz")
+
+    val isApk: Boolean
+        get() = extension == "apk"
 }

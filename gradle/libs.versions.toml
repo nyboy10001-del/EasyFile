@@ -9,6 +9,7 @@ materialIconsExtended = "1.7.5"
 coilCompose = "2.7.0"
 playServicesAds = "23.4.0"
 billing = "7.1.1"
+media3 = "1.4.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,6 +25,8 @@ androidx-material-icons-extended = { group = "androidx.compose.material", name =
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
+media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
+media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

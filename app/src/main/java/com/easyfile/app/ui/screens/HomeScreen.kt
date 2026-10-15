@@ -2,6 +2,7 @@ package com.easyfile.app.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -29,6 +30,7 @@ fun HomeScreen(
     recentFiles: List<FileItem>,
     isAdFree: Boolean,
     onCategoryClick: (FileCategory) -> Unit,
+    onExploreFoldersClick: () -> Unit,
     onOpenFile: (FileItem) -> Unit,
     onShareFile: (FileItem) -> Unit,
     onDeleteFile: (FileItem) -> Unit,
@@ -50,14 +52,12 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "📁 EasyFile",
-                        fontSize = 26.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = NavyDark
-                    )
-                }
+                Text(
+                    text = "📁 EasyFile",
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = NavyDark
+                )
 
                 if (!isAdFree) {
                     Button(
@@ -108,7 +108,6 @@ fun HomeScreen(
 
                         Spacer(modifier = Modifier.height(10.dp))
 
-                        // Clear visual progress bar
                         LinearProgressIndicator(
                             progress = { storageStats.percentageUsed },
                             modifier = Modifier
@@ -131,10 +130,46 @@ fun HomeScreen(
             }
         }
 
+        // Prominent Main Storage (Explore Folders) Card
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(Color(0xFFEDE9FE))
+                    .border(2.dp, AudioPurple, RoundedCornerShape(16.dp))
+                    .clickable(onClick = onExploreFoldersClick)
+                    .padding(18.dp)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("🗂️", fontSize = 42.sp)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Main Storage (All Folders)",
+                            fontSize = 19.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = AudioPurple
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "Explore folder by folder easily",
+                            fontSize = 14.sp,
+                            color = TextSecondaryDark
+                        )
+                    }
+                    Text("➔", fontSize = 24.sp, color = AudioPurple)
+                }
+            }
+        }
+
         // 6 Big Category Cards
         item {
             Text(
-                text = "Categories",
+                text = "Quick Categories",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextPrimaryDark
