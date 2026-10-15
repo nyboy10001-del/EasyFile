@@ -40,7 +40,7 @@ fun HomeScreen(
             .fillMaxSize()
             .background(SlateBackground)
             .padding(horizontal = 16.dp),
-        contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp),
+        contentPadding = PaddingValues(start = 0.dp, top = 16.dp, end = 0.dp, bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         // App Title & Remove Ads Bar
