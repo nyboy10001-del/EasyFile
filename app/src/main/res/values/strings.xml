@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">EasyFile</string>
+    <string name="storage_permission_rational">To help you see your photos, WhatsApp files, downloads, and documents, EasyFile needs permission to view your device files.</string>
+    <string name="grant_permission">Allow Access</string>
+    <string name="category_photos">Photos &amp; Pictures</string>
+    <string name="category_whatsapp">WhatsApp Files</string>
+    <string name="category_audio">Voice &amp; Music</string>
+    <string name="category_downloads">Downloads</string>
+    <string name="category_documents">Documents</string>
+    <string name="category_trash">Recycle Bin</string>
+    <string name="empty_trash">Empty Recycle Bin</string>
+    <string name="restore_file">Put Back</string>
+    <string name="delete_forever">Delete Permanently</string>
+    <string name="action_open">Open</string>
+    <string name="action_share">Share</string>
+    <string name="action_delete">Move to Trash</string>
+    <string name="remove_ads">Remove Ads</string>
+</resources>
