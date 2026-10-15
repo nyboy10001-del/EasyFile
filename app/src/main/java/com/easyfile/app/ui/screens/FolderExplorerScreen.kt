@@ -55,7 +55,7 @@ fun FolderExplorerScreen(
     val displayPath = remember(currentFolder) {
         val rootPath = Environment.getExternalStorageDirectory().absolutePath
         val rel = currentFolder.absolutePath.removePrefix(rootPath).trim('/')
-        if (rel.isEmpty()) "Internal Storage" else "Internal Storage > ${rel.replace('/', " > ")}"
+        if (rel.isEmpty()) "Internal Storage" else "Internal Storage > ${rel.replace("/", " > ")}"
     }
 
     Column(
